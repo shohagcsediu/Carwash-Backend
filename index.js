@@ -16,7 +16,7 @@ app.use(express.static('doctors'));
 app.use(express.static('washmans'));
 app.use(fileUpload());
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
     res.send("Welcome To Carwash Server")
