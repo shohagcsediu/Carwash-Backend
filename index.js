@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
+    console.log("database connection errors:", err);
     const appointmentCollection = client.db("carwashdb").collection("appointments");
     const washmanCollection = client.db("carwashdb").collection("washman");
     const serviceCollection = client.db("carwashdb").collection("smartcarwash");
