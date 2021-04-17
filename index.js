@@ -32,7 +32,7 @@ client.connect(err => {
 
 
     // Car servicing Appoinment Api
-    app.post('/addAppointment', (req, res) => {
+app.post('/addAppointment', (req, res) => {
         const appointment = req.body;
         appointmentCollection.insertOne(appointment)
             .then(result => {
@@ -41,7 +41,7 @@ client.connect(err => {
     })
 
     // display appointments for the selected date
-    app.post('/appointmentsByDate', (req, res) => {
+app.post('/appointmentsByDate', (req, res) => {
         const date = req.body;
         console.log(date.date);
         appointmentCollection.find({ date: date.date })
@@ -51,7 +51,7 @@ client.connect(err => {
     })
 
     // add washman api & send information to server
-    app.post('/addWashman', (req, res) => {
+app.post('/addWashman', (req, res) => {
         const file = req.files.file;
         const name = req.body.name;
         const email = req.body.email;
@@ -71,7 +71,7 @@ client.connect(err => {
     
     
      // display information in washman components
-     app.get('/washmans', (req, res) => {
+app.get('/washmans', (req, res) => {
         washmanCollection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
@@ -80,7 +80,7 @@ client.connect(err => {
 
 
       // add service api & send information to server
-      app.post('/addService', (req, res) => {
+app.post('/addService', (req, res) => {
         const file = req.files.file;
         const name = req.body.name;
         const details = req.body.details;
@@ -101,7 +101,7 @@ client.connect(err => {
     })
     
     // display services info
-    app.get('/services', (req, res) => {
+app.get('/services', (req, res) => {
         serviceCollection.find({})
             .toArray((err, documents) => {
                 res.send(documents);
@@ -109,20 +109,20 @@ client.connect(err => {
     });
 
           // add review api & send information to server
-          app.post('/addReview', (req, res) => {
-            const name = req.body.name;
-            const comment = req.body.comment;
-            const email = req.body.email;
-          
-            reviewCollection.insertOne({ name, comment, email })
-                .then(result => {
-                    res.send(result.insertedCount > 0);
-                    // res.send({count: result.InsertedCount});
-                })
-        })
+app.post('/addReview', (req, res) => {
+        const name = req.body.name;
+        const comment = req.body.comment;
+        const email = req.body.email;
+        
+        reviewCollection.insertOne({ name, comment, email })
+            .then(result => {
+                res.send(result.insertedCount > 0);
+                // res.send({count: result.InsertedCount});
+            })
+    })
         
         // display information in review components
-        app.get('/testimonials', (req, res) => {
+app.get('/testimonials', (req, res) => {
             reviewCollection.find({})
                 .toArray((err, documents) => {
                     res.send(documents);
